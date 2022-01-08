@@ -27,8 +27,6 @@ const joinValues = () => {
 };
 
 const solve = () => {
-  var axios = require("axios").default;
-
   var options = {
     method: "POST",
     url: "https://solve-sudoku.p.rapidapi.com/",
