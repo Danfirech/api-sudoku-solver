@@ -1,6 +1,6 @@
 const puzzleBoard = document.querySelector("#puzzle");
 const solveButton = document.querySelector("#solve-button");
-
+const solutionDisplay = document.querySelector("#solution");
 const squares = 81;
 const submission = [];
 
@@ -11,6 +11,7 @@ for (let i = 0; i < squares; i++) {
   inputElement.setAttribute("type", "number");
   inputElement.setAttribute("min", "1");
   inputElement.setAttribute("max", "9");
+
   puzzleBoard.appendChild(inputElement);
 }
 
@@ -32,6 +33,9 @@ const populateValues = (isSolvable, solution) => {
     inputs.forEach((input, i) => {
       input.value = solution[i];
     });
+    solutionDisplay.innerHTML = "this is the answer";
+  } else {
+    solutionDisplay = "this is not solvable";
   }
 };
 
@@ -45,7 +49,7 @@ const solve = () => {
     headers: {
       "content-type": "application/json",
       "x-rapidapi-host": "solve-sudoku.p.rapidapi.com",
-      "x-rapidapi-key": "227ba1bed6msh67dcdf76b435e79p1cd122jsn7a2b05476f1e",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
     },
     data: {
       puzzle: data,
